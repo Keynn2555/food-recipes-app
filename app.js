@@ -65,7 +65,6 @@ addGlobalEventListener('click', '#scroll-to-home', handleScrollToHome);
 addGlobalEventListener('click', '#scroll-to-about', handleScrollToAbout);
 addGlobalEventListener('click', '#scroll-to-contact', handleScrollToContact);
 window.addEventListener('resize', closeMobileMenu);
-// searchBar.addEventListener('focus', setFocusColor);
 
 /**
  * Footer copyright set current year
