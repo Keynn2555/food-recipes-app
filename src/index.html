@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- CDN -->
+
+		<!-- Font Aweome CDN -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+
+		<!-- Google Fonts CDN -->
+		<!-- Pacifico Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Poppins Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="style.css" />
+		<!-- Custom Script -->
+		<script src="app.js" defer></script>
+
+		<title>Tasty Life | Home</title>
+	</head>
+	<body>
+		<!-- Navbar Desktop -->
+		<div class="navbar bg-primary">
+			<div class="container">
+				<div class="nav-menu">
+					<a id="scroll-to-home" class="logo-name">Tasty Life</a>
+					<a
+						href="javascript:void(0);"
+						id="burger-icon"
+						class="icon"
+						onclick="handleClickBurger()"
+						><i class="fa fa-bars"></i
+					></a>
+					<div class="menu-links">
+						<ul>
+							<li><a id="scroll-to-home">Home</a></li>
+							<li><a id="scroll-to-about">About</a></li>
+							<li><a id="scroll-to-contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Navbar Mobile -->
+		<div id="mobile-menu" class="text-center">
+			<div class="mobile-links">
+				<a id="scroll-to-home" class="mobile-link">Home</a>
+				<a id="scroll-to-about" class="mobile-link">About</a>
+				<a id="scroll-to-contact" class="mobile-link">Contact</a>
+			</div>
+		</div>
+
+		<!-- Section 1 -->
+		<section id="home" class="bg-primary">
+			<div class="container text-center mt-3">
+				<h1 class="search-title">Search Recipe</h1>
+				<div class="search-bar">
+					<input
+						id="search-recipe"
+						class="input-field"
+						type="text"
+						name="recipe"
+						placeholder="What's on your mind?"
+					/>
+					<!-- <i id="search-icon" class="fa fa-search"></i> -->
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2 -->
+		<section class="bg-light">
+			<div class="container text-center">
+				<h1>Hello World</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
+					molestias quae.
+				</p>
+			</div>
+		</section>
+
+		<!-- Section 2 -->
+		<section id="about" class="bg-accent">
+			<div class="container text-center">
+				<h1>About</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
+					molestias quae.
+				</p>
+			</div>
+		</section>
+
+		<!-- Section 2 -->
+		<section id="contact" class="bg-light">
+			<div class="container text-center">
+				<h1>Contact</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
+					molestias quae.
+				</p>
+			</div>
+		</section>
+
+		<!-- Section 3 -->
+		<section id="footer" class="bg-dark">
+			<p class="container copyright text-center">
+				Copyright &copy; <span id="year-now"></span> - Coded by Ken Frianeza
+			</p>
+		</section>
+	</body>
+</html>
