@@ -1,3 +1,21 @@
+/**
+ * Utility functions
+ * @function addGlobalEventListener()
+ * @function qs()
+ * @function qsa()
+ * @function createElement()
+ */
+
+/**
+ * @function addGlobalEventListener()
+ * @description create event listener
+ * @param {*} type
+ * @param {*} selector
+ * @param {*} callback
+ * @param {*} options
+ * @param {*} parent
+ */
+
 function addGlobalEventListener(
 	type,
 	selector,
@@ -14,13 +32,37 @@ function addGlobalEventListener(
 	);
 }
 
+/**
+ * @function qs()
+ * @description use query selector
+ * @param {*} selector
+ * @param {*} parent
+ * @returns
+ */
+
 function qs(selector, parent = document) {
 	return parent.querySelector(selector);
 }
 
+/**
+ * @function qsa()
+ * @description use query selector all
+ * @param {*} selector
+ * @param {*} parent
+ * @returns
+ */
+
 function qsa(selector, parent = document) {
 	return [...parent.querySelector(selector)];
 }
+
+/**
+ * @function createElement()
+ * @description create an element
+ * @param {*} type
+ * @param {*} options
+ * @returns
+ */
 
 function createElement(type, options = {}) {
 	const element = document.createElement(type);
@@ -49,14 +91,76 @@ function createElement(type, options = {}) {
 }
 
 /**
- * Selectors
+ * Optimization functions
+ */
+
+/**
+ * @function debounce()
+ * @function throttle()
+ * @description call the function at certain delay to improve performace
+ */
+
+/**
+ * @function debounce()
+ * @param {*} callback
+ * @param {*} delay
+ * @returns
+ */
+
+function debounce(callback, delay = 1000) {
+	let timeout;
+	return (...args) => {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			callback(...args);
+		}, delay);
+	};
+}
+
+/**
+ * @function throttle()
+ * @param {*} callback
+ * @param {*} delay
+ * @returns
+ */
+
+function throttle(callback, delay = 1000) {
+	let shouldWait = false;
+	let waitingArgs;
+	const timeoutFunction = () => {
+		if (waitingArgs == null) {
+			shouldWait = false;
+		} else {
+			callback(...waitingArgs);
+			waitingArgs = null;
+			setTimeout(timeoutFunction, delay);
+		}
+	};
+
+	return (...args) => {
+		if (shouldWait) {
+			waitingArgs = args;
+			return;
+		}
+
+		callback(...args);
+		shouldWait = true;
+		setTimeout(timeoutFunction, delay);
+	};
+}
+
+/**
+ * @description Selectors
  */
 
 const mobileMenu = qs('#mobile-menu');
 const yearNow = qs('#year-now');
+const searchField = qs('#search-recipe');
 
 /**
- * Event Listeners
+ * @function throttleMobileMenu()
+ * @function debounceSearchField()
+ * @description Event Listeners
  */
 
 addGlobalEventListener('click', '#mobile-menu', handleClickBurger);
@@ -64,17 +168,37 @@ addGlobalEventListener('click', '.mobile-link', handleClickLink);
 addGlobalEventListener('click', '#scroll-to-home', handleScrollToHome);
 addGlobalEventListener('click', '#scroll-to-about', handleScrollToAbout);
 addGlobalEventListener('click', '#scroll-to-contact', handleScrollToContact);
-window.addEventListener('resize', closeMobileMenu);
+
+window.addEventListener('resize', () => {
+	throttleMobileMenu();
+});
+
+const throttleMobileMenu = throttle(() => {
+	if (window.innerWidth >= 640) {
+		isActive = false;
+		mobileMenu.style.display = 'none';
+	}
+}, 100);
+
+searchField.addEventListener('input', (e) => {
+	debounceSearchField(e);
+});
+
+const debounceSearchField = debounce((e) => {
+	console.log(e.target.value);
+});
 
 /**
- * Footer copyright set current year
+ * @description Footer copyright set current year
  */
 
 let year = new Date().getFullYear();
 yearNow.append(year);
 
 /**
- * Navigation click handler with toggle
+ * @function handleClickBurger()
+ * @function handleClickLink()
+ * @description Navigation click handler with toggle
  */
 
 let isActive = false;
@@ -89,15 +213,11 @@ function handleClickLink() {
 	mobileMenu.style.display = 'none';
 }
 
-function closeMobileMenu() {
-	if (window.innerWidth >= 640) {
-		isActive = false;
-		mobileMenu.style.display = 'none';
-	}
-}
-
 /**
- * Scroll to ID functions with offset
+ * @function handleScrollToHome()
+ * @function handleScrollToAbout()
+ * @function handleScrollToContact()
+ * @description Scroll to id with offset
  */
 
 const yOffset = -150;
