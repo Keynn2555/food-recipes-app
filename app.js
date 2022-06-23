@@ -155,7 +155,6 @@ function throttle(callback, delay = 1000) {
 
 const mobileMenu = qs('#mobile-menu');
 const yearNow = qs('#year-now');
-const searchField = qs('#search-recipe');
 
 /**
  * @function throttleMobileMenu()
@@ -164,7 +163,7 @@ const searchField = qs('#search-recipe');
  */
 
 addGlobalEventListener('click', '#mobile-menu', handleClickBurger);
-addGlobalEventListener('click', '.mobile-link', handleClickLink);
+addGlobalEventListener('click', '.mobile-link', handleClickMenu);
 addGlobalEventListener('click', '#scroll-to-home', handleScrollToHome);
 addGlobalEventListener('click', '#scroll-to-about', handleScrollToAbout);
 addGlobalEventListener('click', '#scroll-to-contact', handleScrollToContact);
@@ -179,14 +178,6 @@ const throttleMobileMenu = throttle(() => {
 		mobileMenu.style.display = 'none';
 	}
 }, 100);
-
-searchField.addEventListener('input', (e) => {
-	debounceSearchField(e);
-});
-
-const debounceSearchField = debounce((e) => {
-	console.log(e.target.value);
-});
 
 /**
  * @description Footer copyright set current year
@@ -208,7 +199,7 @@ function handleClickBurger() {
 	mobileMenu.style.display = state;
 }
 
-function handleClickLink() {
+function handleClickMenu() {
 	isActive = false;
 	mobileMenu.style.display = 'none';
 }
@@ -239,3 +230,38 @@ function handleScrollToContact() {
 	const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 	window.scrollTo({ top: y, behavior: 'smooth' });
 }
+
+// Grid
+const searchField = qs('#search-recipe');
+const gridRecipes = qs('.grid-recipes');
+
+async function searchRecipe(recipe) {
+	const request = await fetch(
+		`https://themealdb.com/api/json/v1/1/search.php?s=${recipe}`
+	);
+	return request.json();
+}
+
+searchField.addEventListener('input', (e) => {
+	debounceSearchField(e);
+});
+
+const debounceSearchField = debounce((e) => {
+	console.log(e.target.value);
+	getItem(e.target.value);
+	async function getItem(recipe) {
+		const item = await searchRecipe(recipe);
+		console.log(item.meals);
+		item.meals.forEach((item) => {
+			const gridItem = createElement('div', { class: 'item' });
+			gridItem.innerHTML = `<img src="${item.strMealThumb}" alt="${item.strMeal}">`;
+			gridRecipes.append(gridItem);
+		});
+	}
+});
+
+// count.forEach((item) => {
+// 	const gridItem = createElement('div', { class: 'item' });
+// 	gridItem.innerHTML = `${item}`;
+// 	gridRecipes.append(gridItem);
+// });

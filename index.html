@@ -42,7 +42,6 @@
 		<div class="navbar bg-primary">
 			<div class="container">
 				<div class="nav-menu">
-					<a id="scroll-to-home" class="logo-name">Tasty Life</a>
 					<a
 						href="javascript:void(0);"
 						id="burger-icon"
@@ -50,6 +49,7 @@
 						onclick="handleClickBurger()"
 						><i class="fa fa-bars"></i
 					></a>
+					<a id="scroll-to-home" class="logo-name">Tasty Life</a>
 					<div class="menu-links">
 						<ul>
 							<li><a id="scroll-to-home">Home</a></li>
@@ -70,67 +70,64 @@
 			</div>
 		</div>
 
-		<!-- Section 1 -->
-		<section id="home" class="bg-primary">
-			<div class="container text-center mt-3">
-				<h1 class="search-title">Search Recipe</h1>
-				<div class="search-bar">
-					<input
-						id="search-recipe"
-						class="input-field"
-						type="text"
-						name="recipe"
-						placeholder="What's on your mind?"
-					/>
-					<!-- <i id="search-icon" class="fa fa-search"></i> -->
+		<div id="contents">
+			<!-- Section 1 -->
+			<section id="home" class="bg-primary">
+				<div
+					class="container text-center d-flex justify-content-center align-items-center flex-direction-column"
+				>
+					<h1 class="search-title">Search Recipe</h1>
+					<div class="search-bar">
+						<input
+							id="search-recipe"
+							class="input-field"
+							type="text"
+							name="recipe"
+							placeholder="What's on your mind?"
+						/>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- Section 2 -->
-		<section class="bg-light">
-			<div class="container text-center">
-				<h1>Hello World</h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
-					molestias quae.
+			<!-- Section 2 -->
+			<section class="bg-primary pt-0 mt-0">
+				<div class="container">
+					<div class="grid-recipes"></div>
+				</div>
+			</section>
+
+			<!-- Section 2 -->
+			<section id="about" class="bg-accent">
+				<div class="container text-center">
+					<h1>About</h1>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+						animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+						Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
+						molestias quae.
+					</p>
+				</div>
+			</section>
+
+			<!-- Section 2 -->
+			<section id="contact" class="bg-light">
+				<div class="container text-center">
+					<h1>Contact</h1>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+						animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+						Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
+						molestias quae.
+					</p>
+				</div>
+			</section>
+
+			<!-- Section 3 -->
+			<section id="footer" class="bg-dark">
+				<p class="container copyright text-center">
+					Copyright &copy; <span id="year-now"></span> - Coded by Ken Frianeza
 				</p>
-			</div>
-		</section>
-
-		<!-- Section 2 -->
-		<section id="about" class="bg-accent">
-			<div class="container text-center">
-				<h1>About</h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
-					molestias quae.
-				</p>
-			</div>
-		</section>
-
-		<!-- Section 2 -->
-		<section id="contact" class="bg-light">
-			<div class="container text-center">
-				<h1>Contact</h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-					animi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Dolorum sequi ipsam eaque unde minima voluptate esse doloribus et
-					molestias quae.
-				</p>
-			</div>
-		</section>
-
-		<!-- Section 3 -->
-		<section id="footer" class="bg-dark">
-			<p class="container copyright text-center">
-				Copyright &copy; <span id="year-now"></span> - Coded by Ken Frianeza
-			</p>
-		</section>
+			</section>
+		</div>
 	</body>
 </html>

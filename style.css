@@ -11,9 +11,7 @@
 	--ff-accent: 'Pacifico', cursive;
 }
 
-*,
-*::before,
-*::after {
+* {
 	box-sizing: border-box;
 }
 
@@ -33,7 +31,10 @@ body {
 	font-size: 1.3125rem;
 	line-height: 1.6;
 	font-weight: 400;
+	background: var(--color-primary-200);
 }
+
+/* Utility Classes */
 
 .container {
 	margin-inline: auto;
@@ -65,6 +66,26 @@ body {
 	text-align: center;
 }
 
+.pb-0 {
+	padding-top: 0;
+}
+
+.pb-1 {
+	padding-top: 1rem;
+}
+
+.pb-2 {
+	padding-top: 2rem;
+}
+
+.pb-3 {
+	padding-top: 5rem;
+}
+
+.pt-0 {
+	padding-top: 0;
+}
+
 .pt-1 {
 	padding-top: 1rem;
 }
@@ -77,6 +98,10 @@ body {
 	padding-top: 5rem;
 }
 
+.mb-0 {
+	margin-bottom: 0;
+}
+
 .mt-1 {
 	margin-top: 1rem;
 }
@@ -86,8 +111,42 @@ body {
 }
 
 .mt-3 {
-	margin-top: 3rem;
+	margin-top: 5rem;
 }
+
+.mb-0 {
+	margin-top: 0;
+}
+
+.mb-1 {
+	margin-top: 1rem;
+}
+
+.mb-2 {
+	margin-top: 2rem;
+}
+
+.mb-3 {
+	margin-top: 5rem;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.flex-direction-column {
+	flex-direction: column;
+}
+
+/* Navbar */
 
 img {
 	display: block;
@@ -120,9 +179,20 @@ section {
 	}
 }
 
+/* Pages */
+
+#contents:nth-child(3) {
+	padding-top: 3.5rem;
+}
+
+#home {
+	display: none;
+}
+
 .nav-menu {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .logo-name {
@@ -137,8 +207,12 @@ section {
 	color: var(--color-primary-300);
 }
 
+.icon {
+	position: absolute;
+	left: 1rem;
+}
+
 #burger-icon {
-	margin-left: auto;
 	padding: 0.5rem;
 }
 
@@ -169,13 +243,6 @@ section {
 	outline-color: var(--color-primary-400) !important;
 	/* border: 2px solid var(--color-primary-400); */
 }
-
-/* #search-icon {
-	position: relative;
-	transform: translate(12px, 12px);
-	font-size: 1.5rem;
-	opacity: 0.85;
-} */
 
 #mobile-menu {
 	position: fixed;
@@ -225,6 +292,10 @@ section {
 		display: none;
 	}
 
+	#home {
+		display: block;
+	}
+
 	.menu-links {
 		display: block;
 		margin-left: auto;
@@ -261,4 +332,22 @@ section {
 		padding: 0.875rem;
 		min-width: 350px;
 	}
+}
+
+.grid-recipes {
+	display: grid;
+	grid-template-columns: minmax(100px, 1fr);
+	gap: 1em;
+	justify-content: center;
+}
+
+@media (min-width: 40em) {
+	.grid-recipes {
+		grid-template-columns: repeat(auto-fit, 250px);
+	}
+}
+
+.grid-recipes .item {
+	outline: auto;
+	height: 250px;
 }
