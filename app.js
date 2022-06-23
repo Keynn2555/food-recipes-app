@@ -250,18 +250,14 @@ const debounceSearchField = debounce((e) => {
 	console.log(e.target.value);
 	getItem(e.target.value);
 	async function getItem(recipe) {
-		const item = await searchRecipe(recipe);
-		console.log(item.meals);
-		item.meals.forEach((item) => {
+		const recipes = await searchRecipe(recipe);
+		console.log(recipes.meals);
+		recipes.meals.forEach((item) => {
 			const gridItem = createElement('div', { class: 'item' });
-			gridItem.innerHTML = `<img src="${item.strMealThumb}" alt="${item.strMeal}">`;
+			gridItem.innerHTML = `
+				<img src="${item.strMealThumb}" alt="${item.strMeal}">
+			`;
 			gridRecipes.append(gridItem);
 		});
 	}
 });
-
-// count.forEach((item) => {
-// 	const gridItem = createElement('div', { class: 'item' });
-// 	gridItem.innerHTML = `${item}`;
-// 	gridRecipes.append(gridItem);
-// });
