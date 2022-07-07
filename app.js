@@ -164,15 +164,16 @@ const yearNow = qs('#year-now');
 
 addGlobalEventListener('click', '#mobile-menu', handleClickBurger);
 addGlobalEventListener('click', '.mobile-link', handleClickMenu);
-addGlobalEventListener('click', '#scroll-to-home', handleScrollToHome);
-addGlobalEventListener('click', '#scroll-to-about', handleScrollToAbout);
-addGlobalEventListener('click', '#scroll-to-contact', handleScrollToContact);
+
+// addGlobalEventListener('click', '#scroll-to-about', handleScrollToAbout);
+// addGlobalEventListener('click', '#scroll-to-contact', handleScrollToContact);
 
 window.addEventListener('resize', () => {
 	throttleMobileMenu();
 });
 
 const throttleMobileMenu = throttle(() => {
+	console.log(window.innerWidth);
 	if (window.innerWidth >= 640) {
 		isActive = false;
 		mobileMenu.style.display = 'none';
@@ -205,33 +206,36 @@ function handleClickMenu() {
 }
 
 /**
- * @function handleScrollToHome()
- * @function handleScrollToAbout()
- * @function handleScrollToContact()
+ * @function handleScrollToId()
  * @description Scroll to id with offset
+ */
+
+/**
+ * Scroll y-axis offset value
  */
 
 const yOffset = -150;
 
-function handleScrollToHome() {
-	const element = qs('#home');
+addGlobalEventListener('click', '#scroll-to-home', () => {
+	handleScrollToId('#home');
+});
+addGlobalEventListener('click', '#scroll-to-about', () => {
+	handleScrollToId('#about');
+});
+addGlobalEventListener('click', '#scroll-to-contact', () => {
+	handleScrollToId('#contact');
+});
+
+function handleScrollToId(id) {
+	const element = qs(id);
 	const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 	window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
-function handleScrollToAbout() {
-	const element = qs('#about');
-	const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-	window.scrollTo({ top: y, behavior: 'smooth' });
-}
+/**
+ * Grid images
+ */
 
-function handleScrollToContact() {
-	const element = qs('#contact');
-	const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-	window.scrollTo({ top: y, behavior: 'smooth' });
-}
-
-// Grid
 const searchField = qs('#search-recipe');
 const gridRecipes = qs('.grid-recipes');
 
@@ -242,10 +246,6 @@ async function searchRecipe(recipe) {
 	return request.json();
 }
 
-searchField.addEventListener('input', (e) => {
-	debounceSearchField(e);
-});
-
 const debounceSearchField = debounce((e) => {
 	console.log(e.target.value);
 	getItem(e.target.value);
@@ -255,9 +255,21 @@ const debounceSearchField = debounce((e) => {
 		recipes.meals.forEach((item) => {
 			const gridItem = createElement('div', { class: 'item' });
 			gridItem.innerHTML = `
-				<img src="${item.strMealThumb}" alt="${item.strMeal}">
+				<img class="item-image" src="${item.strMealThumb}" alt="${item.strMeal}">
 			`;
 			gridRecipes.append(gridItem);
 		});
 	}
+}, 1000);
+
+addGlobalEventListener('input', '#search-recipe', (e) => {
+	debounceSearchField(e);
+});
+
+/**
+ * TODO: implement modal when image is clicked
+ */
+
+addGlobalEventListener('click', '.item-image', () => {
+	alert('Hey!');
 });
